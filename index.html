@@ -3,62 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nydra Studios</title>
+    <title>Nydra Studios | 3D</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background: #050a18; color: white; font-family: sans-serif; text-align: center; margin: 0; }
-        .wrapper { padding: 20px; }
-        img { max-width: 100%; border-radius: 15px; }
-        .card { background: #0f172a; border: 1px solid #00d2ff; border-radius: 20px; padding: 20px; margin: 20px auto; max-width: 500px; }
-        select { padding: 10px; width: 80%; margin: 10px 0; border-radius: 5px; }
-        .btn { background: #00d2ff; color: #050a18; padding: 15px; display: block; text-decoration: none; font-weight: bold; border-radius: 10px; margin: 10px auto; width: 80%; }
-        #modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; align-items:center; justify-content:center; }
-        .wa-float { position: fixed; bottom: 20px; right: 20px; background: #00d2ff; color: #050a18; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; text-decoration: none; }
+        :root {
+            --bg: #050a18;
+            --card: #0f172a;
+            --blue: #00d2ff;
+            --text: #cbd5e1;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: white; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            line-height: 1.6;
+        }
+
+        .container { width: 95%; max-width: 1000px; margin: auto; padding: 20px; }
+
+        /* Header */
+        header { text-align: center; padding: 60px 0; }
+        .logo-img { width: 100%; max-width: 400px; height: auto; }
+        .slogan { color: var(--blue); text-transform: uppercase; letter-spacing: 4px; font-weight: bold; margin-top: 15px; font-size: 0.9rem; }
+
+        /* Tarjetas de Producto */
+        .product-card {
+            background: var(--card);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            border-radius: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            overflow: hidden;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .img-side { flex: 1.2; min-width: 300px; height: 450px; cursor: zoom-in; overflow: hidden; }
+        .img-side img { width: 100%; height: 100%; object-fit: cover; display: block; transition: 0.4s; }
+        .img-side:hover img { transform: scale(1.05); }
+
+        .info-side { 
+            flex: 1; padding: 40px; min-width: 300px; 
+            display: flex; flex-direction: column; 
+            justify-content: center; text-align: center; 
+        }
+
+        .info-side h2 { color: var(--blue); font-size: 2.2rem; margin-bottom: 10px; }
+        .info-side p { color: var(--text); margin-bottom: 25px; }
+
+        /* Controles */
+        .controls { max-width: 280px; margin: 0 auto; width: 100%; }
+        label { color: var(--blue); font-weight: bold; font-size: 0.8rem; display: block; margin-bottom: 8px; }
+        
+        select {
+            width: 100%; padding: 15px; background: #1e293b; color: white;
+            border: 1px solid var(--blue); border-radius: 12px; margin-bottom: 20px;
+            font-size: 1rem; text-align-last: center; cursor: pointer;
+        }
+
+        .btn-ws {
+            display: block; background: var(--blue); color: #050a18;
+            padding: 18px; border-radius: 12px; text-decoration: none !important;
+            font-weight: bold; transition: 0.3s;
+        }
+        .btn-ws:hover { background: white; transform: translateY(-3px); }
+
+        /* Grid de Info */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 60px 0; }
+        .card-info { background: var(--card); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
+        .card-info i { font-size: 2.5rem; color: var(--blue); margin-bottom: 15px; }
+
+        /* Zoom Modal */
+        #modal-zoom {
+            display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 10, 24, 0.95); justify-content: center; align-items: center; cursor: zoom-out;
+        }
+        #modal-zoom img { max-width: 90%; max-height: 90%; border: 2px solid var(--blue); border-radius: 15px; }
+
+        /* Footer y Flotante */
+        footer { text-align: center; padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.1); }
+        .socials a { color: var(--blue); font-size: 3rem; margin: 0 15px; text-decoration: none !important; }
+        
+        .wa-float {
+            position: fixed; bottom: 30px; right: 30px; background: var(--blue);
+            color: #050a18 !important; width: 65px; height: 65px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 35px;
+            text-decoration: none !important; z-index: 1000; box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <img src="logo.png" style="max-width:300px; margin:40px 0;">
-        
-        <div class="card">
-            <img id="im" src="blanco-planta.jpeg" onclick="z(this.src)" style="cursor:zoom-in">
-            <h2>Maceta Prismática</h2>
-            <select id="sm" onchange="uM()">
-                <option value="blanco">Blanco</option>
-                <option value="negro">Negro</option>
-            </select>
-            <a id="bm" href="#" class="btn" target="_blank">Consultar WhatsApp</a>
+
+    <div class="container">
+        <header>
+            <img src="logo.png" alt="Nydra Studios" class="logo-img">
+            <div class="slogan">Innovación en cada capa</div>
+        </header>
+
+        <div class="product-card">
+            <div class="img-side" onclick="openZoom(this)">
+                <img id="img-maceta" src="blanco-planta.jpeg" alt="Maceta">
+            </div>
+            <div class="info-side">
+                <h2>Maceta Prismática</h2>
+                <p>Geometría de precisión para tus ambientes.</p>
+                <div class="controls">
+                    <label>ELEGÍ COLOR:</label>
+                    <select id="sel-maceta" onchange="updMaceta()">
+                        <option value="blanco">Blanco</option>
+                        <option value="negro">Negro</option>
+                    </select>
+                    <a id="lnk-maceta" href="#" target="_blank" class="btn-ws">Consultar Disponibilidad</a>
+                </div>
+            </div>
         </div>
 
-        <div class="card">
-            <img id="if" src="florero.png" onclick="z(this.src)" style="cursor:zoom-in">
-            <h2>Florero Minimalista</h2>
-            <select id="sf" onchange="uF()">
-                <option value="blanco">Blanco</option>
-                <option value="negro">Negro</option>
-            </select>
-            <a id="bf" href="#" class="btn" target="_blank">Consultar WhatsApp</a>
+        <div class="product-card">
+            <div class="img-side" onclick="openZoom(this)">
+                <img id="img-florero" src="florero.png" alt="Florero">
+            </div>
+            <div class="info-side">
+                <h2>Florero Minimalista</h2>
+                <p>Elegancia y textura única para tus flores.</p>
+                <div class="controls">
+                    <label>ELEGÍ COLOR:</label>
+                    <select id="sel-florero" onchange="updFlorero()">
+                        <option value="blanco">Blanco</option>
+                        <option value="negro">Negro</option>
+                    </select>
+                    <a id="lnk-florero" href="#" target="_blank" class="btn-ws">Consultar Disponibilidad</a>
+                </div>
+            </div>
         </div>
+
+        <div class="info-grid">
+            <div class="card-info"><i class="fas fa-leaf"></i><h4>Sustentable</h4><p>Material PLA Bio-Premium.</p></div>
+            <div class="card-info"><i class="fas fa-microchip"></i><h4>Precisión</h4><p>Calibración 3D milimétrica.</p></div>
+            <div class="card-info"><i class="fas fa-rocket"></i><h4>Objetivo</h4><p>Materializamos el futuro del diseño.</p></div>
+        </div>
+
+        <footer>
+            <div class="socials">
+                <a href="https://instagram.com/Nydra_Studios" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/5492616510974" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p style="margin-top:20px; font-weight:bold; color:var(--blue);">NYDRA STUDIOS | 2026</p>
+        </footer>
     </div>
 
-    <div id="modal" onclick="this.style.display='none'"><img id="mi" style="max-width:90%; border:2px solid #00d2ff;"></div>
-    
-    <a href="https://wa.me/5492616510974" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <div id="modal-zoom" onclick="this.style.display='none'">
+        <img id="img-exp" src="">
+    </div>
+
+    <a href="https://wa.me/5492616510974?text=Hola%20Nydra%20Studios!" class="wa-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script>
-        const n = "5492616510974";
-        function uM(){
-            const c = document.getElementById('sm').value;
-            document.getElementById('im').src = c==='negro'?'negro-planta.png':'blanco-planta.jpeg';
-            document.getElementById('bm').href = `https://wa.me/${n}?text=Hola! Stock Maceta ${c}`;
+        const TEL = "5492616510974";
+
+        function updMaceta() {
+            const c = document.getElementById('sel-maceta').value;
+            const img = document.getElementById('img-maceta');
+            const lnk = document.getElementById('lnk-maceta');
+            img.src = (c === 'negro') ? 'negro-planta.png' : 'blanco-planta.jpeg';
+            const msg = `Hola Nydra Studios! Consulto por la Maceta Prismática en color ${c.toUpperCase()}.`;
+            lnk.href = `https://wa.me/${TEL}?text=${encodeURIComponent(msg)}`;
         }
-        function uF(){
-            const c = document.getElementById('sf').value;
-            document.getElementById('if').src = c==='negro'?'florero negro.png':'florero.png';
-            document.getElementById('bf').href = `https://wa.me/${n}?text=Hola! Stock Florero ${c}`;
+
+        function updFlorero() {
+            const c = document.getElementById('sel-florero').value;
+            const img = document.getElementById('img-florero');
+            const lnk = document.getElementById('lnk-florero');
+            img.src = (c === 'negro') ? 'florero negro.png' : 'florero.png';
+            const msg = `Hola Nydra Studios! Consulto por el Florero Minimalista en color ${c.toUpperCase()}.`;
+            lnk.href = `https://wa.me/${TEL}?text=${encodeURIComponent(msg)}`;
         }
-        function z(s){ document.getElementById('modal').style.display='flex'; document.getElementById('mi').src=s; }
-        window.onload = () => { uM(); uF(); };
-    </script>
-</body>
-</html>
+
+        function openZoom(el) {
+            const modal = document.getElementById('modal-zoom');
+            const img = document.getElementById('img-exp');
+            modal.style.display = 'flex';
+            img.src = el
