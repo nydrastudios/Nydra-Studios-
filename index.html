@@ -3,63 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nydra Studios | Impresión 3D</title>
+    <title>Nydra Studios | 3D</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --bg-color: #050a18;
-            --card-bg: #0f172a;
-            --accent-blue: #00d2ff;
-            --text-gray: #cbd5e1;
-        }
-
+        /* Estilos Base */
         body {
-            background-color: var(--bg-color);
-            color: white;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #050a18; /* El azul de fondo */
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            display: block; /* Forzamos que se muestre */
         }
 
-        header { padding: 80px 20px; text-align: center; }
-        .logo { max-width: 380px; width: 95%; height: auto; margin-bottom: 20px; }
-        
-        .hero-text h2 { color: var(--accent-blue); text-transform: uppercase; letter-spacing: 4px; margin: 10px 0; }
-        .hero-text p { color: var(--text-gray); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
+        /* Contenedor Principal */
+        .main-wrapper {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
 
-        .container { max-width: 1100px; margin: auto; padding: 20px; }
+        /* Logo Gigante */
+        header { text-align: center; padding: 60px 0; }
+        .logo-img { 
+            width: 90%; 
+            max-width: 500px; 
+            height: auto; 
+            margin-bottom: 20px;
+        }
 
-        /* Producto */
+        .accent-text { color: #00d2ff; text-transform: uppercase; letter-spacing: 4px; font-weight: bold; }
+
+        /* Tarjeta de Producto */
         .product-card {
-            background: var(--card-bg);
+            background: #0f172a;
+            border: 1px solid #00d2ff33;
+            border-radius: 30px;
             display: flex;
             flex-wrap: wrap;
-            border-radius: 25px;
             overflow: hidden;
-            margin: 40px 0 80px 0;
-            border: 1px solid rgba(0, 210, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .product-img-box { flex: 1.2; min-width: 300px; background: #000; }
-        .product-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        
-        .product-info { flex: 1; padding: 40px; text-align: left; min-width: 300px; }
-        .product-info h3 { color: var(--accent-blue); font-size: 2.3rem; margin-top: 0; }
-        
-        .selector { margin: 25px 0; }
-        .selector label { color: var(--accent-blue); font-weight: bold; font-size: 0.9rem; }
-        select {
-            width: 100%; padding: 12px; background: #1e293b; color: white;
-            border: 1px solid var(--accent-blue); border-radius: 8px; margin-top: 10px; font-size: 1rem;
+            margin: 40px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        .btn-ws {
-            display: block; background: var(--accent-blue); color: #050a18;
-            text-decoration: none !important; padding: 18px; text-align: center;
-            border-radius: 12px; font-weight: bold; margin-top: 20px; transition: 0.3s;
-        }
-        .btn-ws:hover { background: white; transform: translateY(-2px); }
+        .img-side { flex: 1; min-width: 300px; }
+        .img-side img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        /* Grid de Info */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280
+        .info-side { flex: 1; padding: 40px; min-width: 300px; }
+        .info-side h2 { color: #00d2ff;
