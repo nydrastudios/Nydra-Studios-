@@ -29,7 +29,6 @@
         .logo-img { width: 100%; max-width: 450px; height: auto; margin-bottom: 10px; }
         .accent { color: #00d2ff; text-transform: uppercase; letter-spacing: 4px; font-weight: bold; display: block; margin-top: 10px; }
 
-        /* Tarjeta de Producto */
         .product-card {
             background: #0f172a;
             border: 1px solid rgba(0, 210, 255, 0.3);
@@ -38,11 +37,11 @@
             flex-direction: row;
             flex-wrap: wrap;
             overflow: hidden;
-            margin-bottom: 50px; /* Espacio entre productos */
+            margin-bottom: 50px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .img-box { flex: 1; min-width: 300px; height: 400px; }
+        .img-box { flex: 1; min-width: 300px; height: 450px; }
         .img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
         .info-box { 
@@ -84,7 +83,6 @@
         }
         .btn-ws:hover { background: #ffffff; transform: translateY(-3px); }
 
-        /* Grid Informativo */
         .info-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -95,10 +93,8 @@
         .card i { font-size: 2.5rem; color: #00d2ff; margin-bottom: 15px; }
         .full-card { grid-column: 1 / -1; }
 
-        /* Footer y Flotante */
         footer { text-align: center; padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.1); }
         .socials a { color: #00d2ff; font-size: 3rem; margin: 0 15px; text-decoration: none !important; transition: 0.3s; }
-        .socials a:hover { transform: scale(1.1); color: white; }
 
         .wa-float {
             position: fixed; bottom: 30px; right: 30px; background: #00d2ff;
@@ -118,7 +114,7 @@
 
         <section class="product-card">
             <div class="img-box">
-                <img id="main-pot" src="blanco-planta.jpeg" alt="Maceta Nydra">
+                <img id="img-maceta" src="blanco-planta.jpeg" alt="Maceta Nydra">
             </div>
             <div class="info-box">
                 <h2>Maceta Prismática</h2>
@@ -126,27 +122,30 @@
                 
                 <div class="control-group">
                     <label style="color:#00d2ff; font-weight:bold; display:block; margin-bottom:10px;">SELECCIONÁ COLOR:</label>
-                    <select id="color-select" onchange="updatePot()">
+                    <select id="select-maceta" onchange="actualizarMaceta()">
                         <option value="blanco">Blanco</option>
                         <option value="negro">Negro</option>
                     </select>
-                    <a id="ws-btn-pot" href="#" target="_blank" class="btn-ws">Consultar Disponibilidad</a>
+                    <a id="btn-maceta" href="#" target="_blank" class="btn-ws">Consultar Disponibilidad</a>
                 </div>
             </div>
         </section>
 
         <section class="product-card">
             <div class="img-box">
-                <img src="florero.png" alt="Florero Nydra">
+                <img id="img-florero" src="florero.png" alt="Florero Nydra">
             </div>
             <div class="info-box">
                 <h2>Florero Minimalista</h2>
                 <p>Elegancia y textura única para resaltar tus flores.</p>
                 
                 <div class="control-group">
-                    <a href="https://wa.me/5492616510974?text=Hola%20Nydra%20Studios!%20Quería%20consultar%20por%20stock%20del%20Florero%20Minimalista." target="_blank" class="btn-ws">
-                        Consultar Disponibilidad
-                    </a>
+                    <label style="color:#00d2ff; font-weight:bold; display:block; margin-bottom:10px;">SELECCIONÁ COLOR:</label>
+                    <select id="select-florero" onchange="actualizarFlorero()">
+                        <option value="blanco">Blanco</option>
+                        <option value="negro">Negro</option>
+                    </select>
+                    <a id="btn-florero" href="#" target="_blank" class="btn-ws">Consultar Disponibilidad</a>
                 </div>
             </div>
         </section>
@@ -176,18 +175,36 @@
     </a>
 
     <script>
-        function updatePot() {
-            const color = document.getElementById('color-select').value;
-            const img = document.getElementById('main-pot');
-            const btn = document.getElementById('ws-btn-pot');
-            const phone = "5492616510974";
+        const phone = "5492616510974";
+
+        function actualizarMaceta() {
+            const color = document.getElementById('select-maceta').value;
+            const img = document.getElementById('img-maceta');
+            const btn = document.getElementById('btn-maceta');
 
             img.src = (color === 'negro') ? 'negro-planta.png' : 'blanco-planta.jpeg';
-            const msg = `Hola Nydra Studios! Quería consultar por stock de la maceta prismática en color ${color}.`;
-            btn.href = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+            
+            const mensaje = `Hola Nydra Studios! Quería consultar por stock de la Maceta Prismática en color ${color.toUpperCase()}.`;
+            btn.href = `https://wa.me/${phone}?text=${encodeURIComponent(mensaje)}`;
         }
-        // Ejecutar al inicio para el link de la maceta
-        window.onload = updatePot;
+
+        function actualizarFlorero() {
+            const color = document.getElementById('select-florero').value;
+            const img = document.getElementById('img-florero');
+            const btn = document.getElementById('btn-florero');
+
+            // Cambio de imagen para florero (Florero Blanco = florero.png / Florero Negro = florero negro.png)
+            img.src = (color === 'negro') ? 'florero negro.png' : 'florero.png';
+            
+            const mensaje = `Hola Nydra Studios! Quería consultar por stock del Florero Minimalista en color ${color.toUpperCase()}.`;
+            btn.href = `https://wa.me/${phone}?text=${encodeURIComponent(mensaje)}`;
+        }
+
+        // Ejecutar al cargar la página para inicializar los links
+        window.onload = function() {
+            actualizarMaceta();
+            actualizarFlorero();
+        };
     </script>
 </body>
 </html>
