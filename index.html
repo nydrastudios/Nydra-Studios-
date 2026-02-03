@@ -3,49 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nydra Studios | 3D</title>
+    <title>Nydra Studios</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <style>
-        /* 1. RESET Y FONDO (Obligatorio) */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { width: 100%; height: 100%; background-color: #050a18 !important; }
-        body { font-family: 'Segoe UI', sans-serif; color: white; }
+        body { background: #050a18; color: white; font-family: sans-serif; text-align: center; margin: 0; }
+        .wrapper { padding: 20px; }
+        img { max-width: 100%; border-radius: 15px; }
+        .card { background: #0f172a; border: 1px solid #00d2ff; border-radius: 20px; padding: 20px; margin: 20px auto; max-width: 500px; }
+        select { padding: 10px; width: 80%; margin: 10px 0; border-radius: 5px; }
+        .btn { background: #00d2ff; color: #050a18; padding: 15px; display: block; text-decoration: none; font-weight: bold; border-radius: 10px; margin: 10px auto; width: 80%; }
+        #modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; align-items:center; justify-content:center; }
+        .wa-float { position: fixed; bottom: 20px; right: 20px; background: #00d2ff; color: #050a18; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <img src="logo.png" style="max-width:300px; margin:40px 0;">
+        
+        <div class="card">
+            <img id="im" src="blanco-planta.jpeg" onclick="z(this.src)" style="cursor:zoom-in">
+            <h2>Maceta Prismática</h2>
+            <select id="sm" onchange="uM()">
+                <option value="blanco">Blanco</option>
+                <option value="negro">Negro</option>
+            </select>
+            <a id="bm" href="#" class="btn" target="_blank">Consultar WhatsApp</a>
+        </div>
 
-        /* 2. CONTENEDOR VISIBLE */
-        .main-container {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            display: block; /* Forzamos visibilidad */
+        <div class="card">
+            <img id="if" src="florero.png" onclick="z(this.src)" style="cursor:zoom-in">
+            <h2>Florero Minimalista</h2>
+            <select id="sf" onchange="uF()">
+                <option value="blanco">Blanco</option>
+                <option value="negro">Negro</option>
+            </select>
+            <a id="bf" href="#" class="btn" target="_blank">Consultar WhatsApp</a>
+        </div>
+    </div>
+
+    <div id="modal" onclick="this.style.display='none'"><img id="mi" style="max-width:90%; border:2px solid #00d2ff;"></div>
+    
+    <a href="https://wa.me/5492616510974" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <script>
+        const n = "5492616510974";
+        function uM(){
+            const c = document.getElementById('sm').value;
+            document.getElementById('im').src = c==='negro'?'negro-planta.png':'blanco-planta.jpeg';
+            document.getElementById('bm').href = `https://wa.me/${n}?text=Hola! Stock Maceta ${c}`;
         }
-
-        /* 3. LOGO */
-        header { text-align: center; padding: 50px 0; }
-        .logo-img { width: 90%; max-width: 400px; height: auto; }
-        .slogan { color: #00d2ff; letter-spacing: 3px; font-weight: bold; margin-top: 10px; }
-
-        /* 4. PRODUCTOS */
-        .card-producto {
-            background: #0f172a;
-            border: 1px solid #00d2ff44;
-            border-radius: 20px;
-            margin-bottom: 40px;
-            display: flex;
-            flex-wrap: wrap;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        function uF(){
+            const c = document.getElementById('sf').value;
+            document.getElementById('if').src = c==='negro'?'florero negro.png':'florero.png';
+            document.getElementById('bf').href = `https://wa.me/${n}?text=Hola! Stock Florero ${c}`;
         }
-
-        .img-container { flex: 1; min-width: 300px; cursor: zoom-in; }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-        .texto-container {
-            flex: 1;
-            min-width: 300px;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center
+        function z(s){ document.getElementById('modal').style.display='flex'; document.getElementById('mi').src=s; }
+        window.onload = () => { uM(); uF(); };
+    </script>
+</body>
+</html>
