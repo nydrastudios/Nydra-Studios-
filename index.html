@@ -9,60 +9,154 @@
         :root {
             --bg-color: #050a18;
             --card-bg: #0f172a;
-            --accent-blue: #00d2ff;
+            --accent-blue: #00d2ff; /* Tu color principal */
             --text-gray: #cbd5e1;
         }
 
         body {
             background-color: var(--bg-color);
             color: white;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            text-align: center;
         }
 
-        header { padding: 60px 20px; text-align: center; }
-        .logo { max-width: 350px; width: 90%; height: auto; margin-bottom: 20px; }
+        /* Logo más grande */
+        header { padding: 80px 20px 40px; }
+        .logo { max-width: 280px; width: 100%; margin-bottom: 20px; }
         
-        .hero-text h2 { color: var(--accent-blue); text-transform: uppercase; letter-spacing: 3px; margin: 10px 0; }
-        .hero-text p { color: var(--text-gray); max-width: 600px; margin: 0 auto; }
+        .hero-text h2 { color: var(--accent-blue); text-transform: uppercase; letter-spacing: 3px; font-size: 1.5rem; margin-bottom: 10px; }
+        .hero-text p { color: var(--text-gray); max-width: 600px; margin: 0 auto 40px; }
 
         .container { max-width: 1100px; margin: auto; padding: 20px; }
 
-        /* Producto */
+        /* Producto Principal */
         .product-card {
             background: var(--card-bg);
             display: flex;
             flex-wrap: wrap;
             border-radius: 25px;
             overflow: hidden;
-            margin: 40px 0 80px 0;
-            border: 1px solid rgba(0, 210, 255, 0.2);
+            margin-bottom: 80px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            border: 1px solid rgba(0, 210, 255, 0.1);
         }
-        .product-img-box { flex: 1; min-width: 300px; background: #000; }
-        .product-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .product-img-box { flex: 1; min-width: 300px; line-height: 0; }
+        .product-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
         
         .product-info { flex: 1; padding: 40px; text-align: left; min-width: 300px; }
-        .product-info h3 { color: var(--accent-blue); font-size: 2rem; margin-top: 0; }
+        .product-info h3 { color: var(--accent-blue); font-size: 2.2rem; margin-top: 0; }
         
-        .selector { margin: 20px 0; }
+        .selector { margin: 25px 0; }
+        .selector label { font-weight: bold; font-size: 0.9rem; color: var(--accent-blue); }
         select {
             width: 100%; padding: 12px; background: #1e293b; color: white;
-            border: 1px solid var(--accent-blue); border-radius: 8px; margin-top: 10px;
+            border: 1px solid var(--accent-blue); border-radius: 8px; cursor: pointer; margin-top: 10px;
         }
 
         .btn-ws {
             display: block; background: var(--accent-blue); color: #050a18;
-            text-decoration: none; padding: 15px; text-align: center;
-            border-radius: 10px; font-weight: bold; margin-top: 20px;
+            text-decoration: none; padding: 18px; text-align: center;
+            border-radius: 12px; font-weight: bold; margin-top: 20px;
+            transition: 0.3s;
         }
+        .btn-ws:hover { background: #00b8e6; transform: translateY(-2px); }
 
-        /* Grid de Info */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 40px 0; }
-        .info-card { background: var(--card-bg); padding: 30px; border-radius: 20px; text-align: center; }
-        .info-card i { font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 15px; }
-        .full-width { grid-column: 1 / -1; margin-top: 10px; }
+        /* Seccion Información (Debajo del producto) */
+        .quality-title { color: var(--accent-blue); margin-top: 40px; letter-spacing: 2px; font-size: 1.8rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 40px 0; }
+        .info-card { background: var(--card-bg); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.03); }
+        .info-card i { font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 20px; }
+        .info-card h4 { margin: 10px 0; font-size: 1.3rem; color: #fff; }
+        .info-card p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
 
-        /* Social y Flotante */
-        .socials { text-align: center;
+        /* Iconos de Redes con paleta de colores */
+        .socials a { color: var(--accent-blue); font-size: 2.8rem; margin: 0 15px; text-decoration: none; transition: 0.3s; }
+        .socials a:hover { color: white; transform: scale(1.1); }
+
+        /* Floating WhatsApp con paleta de colores */
+        .wa-float {
+            position: fixed; bottom: 30px; right: 30px; 
+            background: var(--accent-blue); /* Color de la página */
+            color: #050a18; width: 65px; height: 65px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 35px;
+            box-shadow: 0 4px 20px rgba(0,210,255,0.5); z-index: 1000;
+            transition: 0.3s;
+        }
+        .wa-float:hover { transform: scale(1.1); background: white; }
+
+        footer { padding: 80px 20px; border-top: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo.png" alt="Nydra Logo" class="logo">
+        <div class="hero-text">
+            <h2>Innovación en cada capa</h2>
+            <p>Transformamos tus ideas en realidad con tecnología de impresión 3D de alta precisión.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="product-card">
+            <div class="product-img-box">
+                <img id="main-img" src="blanco-planta.jpeg" alt="Maceta">
+            </div>
+            <div class="product-info">
+                <h3>Maceta Prismática</h3>
+                <p>Diseño geométrico de alta resistencia. Impreso en 3D con terminación premium ideal para interiores modernos.</p>
+                <div class="selector">
+                    <label>ELEGÍ EL COLOR:</label>
+                    <select id="color-picker" onchange="updateImage()">
+                        <option value="blanco">Blanco</option>
+                        <option value="negro">Negro</option>
+                    </select>
+                </div>
+                <a href="https://wa.me/5492616510974" class="btn-ws">Consultar Disponibilidad</a>
+            </div>
+        </div>
+
+        <h2 class="quality-title">CALIDAD NYDRA STUDIOS</h2>
+        <div class="grid">
+            <div class="info-card">
+                <i class="fas fa-recycle"></i>
+                <h4>Material Sustentable</h4>
+                <p>Trabajamos exclusivamente con PLA Bio-Premium, derivado de recursos renovables como el almidón de maíz.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-microchip"></i>
+                <h4>Precisión 3D</h4>
+                <p>Nuestro proceso garantiza piezas únicas, resistentes y con una terminación estética superior en cada detalle.</p>
+            </div>
+            <div class="info-card" style="grid-column: 1 / -1; max-width: 700px; margin: auto;">
+                <i class="fas fa-rocket"></i>
+                <h4>Nuestro Objetivo</h4>
+                <p>En Nydra, buscamos fusionar el diseño moderno con la tecnología de vanguardia para crear objetos que inspiren y decoren tus espacios de forma única.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="socials">
+            <a href="https://instagram.com/Nydra_Studios"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5492616510974"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p style="margin-top: 25px; color: var(--accent-blue); font-weight: bold; letter-spacing: 1px;">NYDRA STUDIOS | 2026</p>
+    </footer>
+
+    <a href="https://wa.me/5492616510974" class="wa-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function updateImage() {
+            const val = document.getElementById('color-picker').value;
+            const img = document.getElementById('main-img');
+            // Asegúrate de que los nombres de archivos coincidan exactamente
+            img.src = (val === 'negro') ? 'negro-planta.png' : 'blanco-planta.jpeg';
+        }
+    </script>
+</body>
+</html>
