@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nydra Studios | 3D</title>
+    <title>Nydra Studios | Innovación 3D</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --blue: #00d2ff; --bg: #050a18; --card: #0f172a; }
+        :root { --blue: #00d2ff; --bg: #050a18; --card: #0f172a; --text: #cbd5e1; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; }
         
+        body { background: var(--bg); color: white; font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; }
         .container { width: 95%; max-width: 1000px; margin: auto; padding: 20px; }
-        header { text-align: center; padding: 40px 0; }
-        .logo-img { width: 100%; max-width: 400px; height: auto; }
-        .slogan { color: var(--blue); text-transform: uppercase; letter-spacing: 3px; font-weight: bold; font-size: 0.9rem; margin-top: 10px; }
 
-        /* Tarjetas */
+        header { text-align: center; padding: 50px 0; }
+        .logo-img { width: 100%; max-width: 450px; height: auto; }
+        .slogan { color: var(--blue); text-transform: uppercase; letter-spacing: 4px; font-weight: bold; font-size: 0.9rem; margin-top: 10px; }
+
+        /* Tarjetas de Producto */
         .product-card {
             background: var(--card);
             border: 1px solid rgba(0, 210, 255, 0.2);
@@ -24,98 +25,126 @@
             flex-wrap: wrap;
             overflow: hidden;
             margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
         }
-        .img-side { flex: 1; min-width: 300px; height: 400px; cursor: zoom-in; }
-        .img-side img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .img-side { flex: 1.2; min-width: 300px; height: 450px; cursor: zoom-in; position: relative; }
+        .img-side img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s; }
         
-        .info-side { flex: 1; min-width: 300px; padding: 30px; display: flex; flex-direction: column; justify-content: center; text-align: center; }
-        .info-side h2 { color: var(--blue); font-size: 2rem; margin-bottom: 15px; }
+        .info-side { flex: 1; min-width: 300px; padding: 40px; display: flex; flex-direction: column; justify-content: center; text-align: center; }
+        .info-side h2 { color: var(--blue); font-size: 2.5rem; margin-bottom: 10px; }
+        .info-side p { color: var(--text); margin-bottom: 25px; font-size: 1.1rem; }
         
         select {
-            width: 100%; max-width: 250px; padding: 12px; background: #1e293b; color: white;
-            border: 1px solid var(--blue); border-radius: 10px; margin: 10px auto 20px auto;
-            font-size: 1rem; cursor: pointer; display: block;
+            width: 100%; max-width: 280px; padding: 15px; background: #1e293b; color: white;
+            border: 1px solid var(--blue); border-radius: 12px; margin: 0 auto 20px auto;
+            font-size: 1rem; cursor: pointer; display: block; text-align-last: center;
         }
         .btn-ws {
             display: block; background: var(--blue); color: #050a18;
-            padding: 15px; border-radius: 10px; text-decoration: none !important;
-            font-weight: bold; max-width: 250px; margin: 0 auto; transition: 0.3s;
+            padding: 18px; border-radius: 12px; text-decoration: none !important;
+            font-weight: bold; max-width: 280px; margin: 0 auto; transition: 0.3s;
         }
+        .btn-ws:hover { background: white; transform: translateY(-3px); }
+
+        /* Misión, Visión, Valores */
+        .mision-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 60px 0; }
+        .mision-card { background: var(--card); padding: 35px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
+        .mision-card i { font-size: 2.5rem; color: var(--blue); margin-bottom: 15px; }
+        .mision-card h3 { margin-bottom: 10px; color: var(--blue); text-transform: uppercase; font-size: 1.1rem; }
+        .mision-card p { color: var(--text); font-size: 0.95rem; }
 
         /* Modal Zoom */
-        #modal { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer; }
-        #modal img { max-width: 90%; max-height: 90%; border: 2px solid var(--blue); border-radius: 10px; }
+        #modal { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,10,24,0.95); justify-content: center; align-items: center; cursor: zoom-out; }
+        #modal img { max-width: 90%; max-height: 90%; border: 2px solid var(--blue); border-radius: 15px; box-shadow: 0 0 30px var(--blue); }
 
-        /* Info Grid */
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 40px 0; }
-        .card-info { background: var(--card); padding: 25px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
-        .card-info i { font-size: 2rem; color: var(--blue); margin-bottom: 10px; }
+        footer { text-align: center; padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.1); }
+        .socials a { color: var(--blue); font-size: 3rem; margin: 0 15px; text-decoration: none !important; transition: 0.3s; }
+        .socials a:hover { color: white; transform: scale(1.1); }
 
-        footer { text-align: center; padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.1); }
-        .socials a { color: var(--blue); font-size: 2.5rem; margin: 0 15px; text-decoration: none !important; }
-
-        .wa-float { position: fixed; bottom: 25px; right: 25px; background: var(--blue); color: #050a18 !important; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; text-decoration: none !important; z-index: 100; }
+        /* WhatsApp Flotante */
+        .wa-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white !important; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none !important; z-index: 1000; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
     </style>
 </head>
 <body>
 
+    <div style="display:none;">
+        <img src="negro-planta.png">
+        <img src="blanco-planta.jpeg">
+        <img src="florero negro.png">
+        <img src="florero.png">
+    </div>
+
     <div class="container">
         <header>
-            <img src="logo.png" alt="Logo Nydra" class="logo-img">
+            <img src="logo.png" alt="Nydra Studios Logo" class="logo-img">
             <p class="slogan">Innovación en cada capa</p>
         </header>
 
         <div class="product-card">
-            <div class="img-side" onclick="zoom(this)">
-                <img id="img-maceta" src="blanco-planta.jpeg">
+            <div class="img-side" onclick="openZoom(this)">
+                <img id="img-maceta" src="blanco-planta.jpeg" alt="Maceta Nydra">
             </div>
             <div class="info-side">
                 <h2>Maceta Prismática</h2>
-                <p>Diseño geométrico de alta precisión.</p>
-                <select id="sel-maceta" onchange="upd('maceta')">
+                <p>Estética geométrica premium para tus ambientes favoritos.</p>
+                <select id="sel-maceta" onchange="actualizar('maceta')">
                     <option value="blanco">Blanco</option>
                     <option value="negro">Negro</option>
                 </select>
-                <a id="lnk-maceta" href="#" target="_blank" class="btn-ws">Consultar Stock</a>
+                <a id="lnk-maceta" href="#" target="_blank" class="btn-ws">Consultar Disponibilidad</a>
             </div>
         </div>
 
         <div class="product-card">
-            <div class="img-side" onclick="zoom(this)">
-                <img id="img-florero" src="florero.png">
+            <div class="img-side" onclick="openZoom(this)">
+                <img id="img-florero" src="florero.png" alt="Florero Nydra">
             </div>
             <div class="info-side">
                 <h2>Florero Minimalista</h2>
-                <p>Elegancia única para tus espacios.</p>
-                <select id="sel-florero" onchange="upd('florero')">
+                <p>Elegancia y textura única para resaltar tus flores.</p>
+                <select id="sel-florero" onchange="actualizar('florero')">
                     <option value="blanco">Blanco</option>
                     <option value="negro">Negro</option>
                 </select>
-                <a id="lnk-florero" href="#" target="_blank" class="btn-ws">Consultar Stock</a>
+                <a id="lnk-florero" href="#" target="_blank" class="btn-ws">Consultar Disponibilidad</a>
             </div>
         </div>
 
-        <div class="info-grid">
-            <div class="card-info"><i class="fas fa-leaf"></i><p>Sustentable (PLA)</p></div>
-            <div class="card-info"><i class="fas fa-microchip"></i><p>Precisión 3D</p></div>
-            <div class="card-info"><i class="fas fa-paint-brush"></i><p>Diseño Moderno</p></div>
+        <div class="mision-grid">
+            <div class="mision-card">
+                <i class="fas fa-bullseye"></i>
+                <h3>Misión</h3>
+                <p>Transformar ideas en realidades tangibles mediante impresión 3D de alta precisión, combinando arte y tecnología.</p>
+            </div>
+            <div class="mision-card">
+                <i class="fas fa-eye"></i>
+                <h3>Visión</h3>
+                <p>Ser referentes en el diseño sustentable, liderando la evolución de la decoración de interiores con materiales bio-degradables.</p>
+            </div>
+            <div class="mision-card">
+                <i class="fas fa-gem"></i>
+                <h3>Valores</h3>
+                <p>Calidad milimétrica, compromiso ambiental en cada capa y diseño de vanguardia centrado en el cliente.</p>
+            </div>
         </div>
 
         <footer>
             <div class="socials">
                 <a href="https://instagram.com/Nydra_Studios" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/5492616510974" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
-            <p style="margin-top:20px;">NYDRA STUDIOS | 2026</p>
+            <p style="margin-top:20px; color:var(--blue); font-weight:bold;">NYDRA STUDIOS | 2026</p>
         </footer>
     </div>
 
-    <div id="modal" onclick="this.style.display='none'"><img id="img-modal"></div>
+    <div id="modal" onclick="this.style.display='none'"><img id="img-zoom"></div>
 
-    <a href="https://wa.me/5492616510974" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/5492616510974?text=Hola%20Nydra%20Studios!%20Vengo%20de%20la%20web." class="wa-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script>
-        function upd(tipo) {
+        function actualizar(tipo) {
             var color = document.getElementById('sel-' + tipo).value;
             var img = document.getElementById('img-' + tipo);
             var lnk = document.getElementById('lnk-' + tipo);
@@ -132,12 +161,12 @@
             }
         }
 
-        function zoom(el) {
+        function openZoom(el) {
             document.getElementById('modal').style.display = 'flex';
-            document.getElementById('img-modal').src = el.querySelector('img').src;
+            document.getElementById('img-zoom').src = el.querySelector('img').src;
         }
 
-        window.onload = function() { upd('maceta'); upd('florero'); };
+        window.onload = function() { actualizar('maceta'); actualizar('florero'); };
     </script>
 </body>
 </html>
