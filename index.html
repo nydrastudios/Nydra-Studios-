@@ -22,11 +22,11 @@
             line-height: 1.6;
         }
 
-        header { padding: 60px 20px; text-align: center; }
-        .logo { max-width: 350px; width: 90%; height: auto; margin-bottom: 20px; }
+        header { padding: 80px 20px; text-align: center; }
+        .logo { max-width: 380px; width: 95%; height: auto; margin-bottom: 20px; }
         
-        .hero-text h2 { color: var(--accent-blue); text-transform: uppercase; letter-spacing: 3px; margin: 10px 0; }
-        .hero-text p { color: var(--text-gray); max-width: 600px; margin: 0 auto; }
+        .hero-text h2 { color: var(--accent-blue); text-transform: uppercase; letter-spacing: 4px; margin: 10px 0; }
+        .hero-text p { color: var(--text-gray); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
 
         .container { max-width: 1100px; margin: auto; padding: 20px; }
 
@@ -39,115 +39,27 @@
             overflow: hidden;
             margin: 40px 0 80px 0;
             border: 1px solid rgba(0, 210, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .product-img-box { flex: 1; min-width: 300px; background: #000; }
+        .product-img-box { flex: 1.2; min-width: 300px; background: #000; }
         .product-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
         .product-info { flex: 1; padding: 40px; text-align: left; min-width: 300px; }
-        .product-info h3 { color: var(--accent-blue); font-size: 2rem; margin-top: 0; }
+        .product-info h3 { color: var(--accent-blue); font-size: 2.3rem; margin-top: 0; }
         
-        .selector { margin: 20px 0; }
+        .selector { margin: 25px 0; }
+        .selector label { color: var(--accent-blue); font-weight: bold; font-size: 0.9rem; }
         select {
             width: 100%; padding: 12px; background: #1e293b; color: white;
-            border: 1px solid var(--accent-blue); border-radius: 8px; margin-top: 10px;
+            border: 1px solid var(--accent-blue); border-radius: 8px; margin-top: 10px; font-size: 1rem;
         }
 
         .btn-ws {
             display: block; background: var(--accent-blue); color: #050a18;
-            text-decoration: none; padding: 15px; text-align: center;
-            border-radius: 10px; font-weight: bold; margin-top: 20px;
+            text-decoration: none !important; padding: 18px; text-align: center;
+            border-radius: 12px; font-weight: bold; margin-top: 20px; transition: 0.3s;
         }
+        .btn-ws:hover { background: white; transform: translateY(-2px); }
 
         /* Grid de Info */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 40px 0; }
-        .info-card { background: var(--card-bg); padding: 30px; border-radius: 20px; text-align: center; }
-        .info-card i { font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 15px; }
-        .full-width { grid-column: 1 / -1; margin-top: 10px; }
-
-        /* Social y Flotante */
-        .socials { text-align: center; padding: 40px; }
-        .socials a { color: var(--accent-blue); font-size: 2.5rem; margin: 0 15px; text-decoration: none; }
-        
-        .wa-float {
-            position: fixed; bottom: 25px; right: 25px; background: var(--accent-blue);
-            color: #050a18; width: 60px; height: 60px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1000;
-        }
-
-        footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
-    </style>
-</head>
-<body>
-
-    <header>
-        <img src="logo.png" alt="Nydra Logo" class="logo">
-        <div class="hero-text">
-            <h2>Innovación en cada capa</h2>
-            <p>Tecnología 3D de alta precisión y diseño consciente.</p>
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="product-card">
-            <div class="product-img-box">
-                <img id="main-img" src="blanco-planta.jpeg" alt="Maceta">
-            </div>
-            <div class="product-info">
-                <h3>Maceta Prismática</h3>
-                <p>Diseño geométrico premium impreso en 3D de alta resolución.</p>
-                <div class="selector">
-                    <label>ELEGÍ TU COLOR:</label>
-                    <select id="color-picker" onchange="updateImage()">
-                        <option value="blanco">Blanco</option>
-                        <option value="negro">Negro</option>
-                    </select>
-                </div>
-                <a href="https://wa.me/5492616510974" class="btn-ws">Consultar Disponibilidad</a>
-            </div>
-        </div>
-
-        <h2 style="color: var(--accent-blue); text-align: center;">CALIDAD NYDRA STUDIOS</h2>
-        
-        <div class="grid">
-            <div class="info-card">
-                <i class="fas fa-leaf"></i>
-                <h4>Sustentabilidad</h4>
-                <p>Material PLA Bio-Premium biodegradable.</p>
-            </div>
-            <div class="info-card">
-                <i class="fas fa-bullseye"></i>
-                <h4>Precisión</h4>
-                <p>Calibración milimétrica en cada pieza.</p>
-            </div>
-            <div class="info-card">
-                <i class="fas fa-paint-brush"></i>
-                <h4>Diseño</h4>
-                <p>Estética moderna para tus espacios.</p>
-            </div>
-            <div class="info-card full-width">
-                <i class="fas fa-rocket"></i>
-                <h4>Nuestro Objetivo</h4>
-                <p>Materializamos el futuro del diseño interior con tecnología de vanguardia.</p>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="socials">
-            <a href="https://instagram.com/Nydra_Studios"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/5492616510974"><i class="fab fa-whatsapp"></i></a>
-        </div>
-        <p>NYDRA STUDIOS | 2026</p>
-    </footer>
-
-    <a href="https://wa.me/5492616510974" class="wa-float"><i class="fab fa-whatsapp"></i></a>
-
-    <script>
-        function updateImage() {
-            const val = document.getElementById('color-picker').value;
-            const img = document.getElementById('main-img');
-            img.src = (val === 'negro') ? 'negro-planta.png' : 'blanco-planta.jpeg';
-        }
-    </script>
-</body>
-</html>
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280
